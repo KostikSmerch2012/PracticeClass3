@@ -9,14 +9,24 @@ using namespace std;
 
 void task3_1() {
     ofstream fin("bebebe.txt");
-    if (!fin) {
+    if (!fin.is_open()) {
         cout << "Ненаход" << endl;
+        return;
     }
-    fin << "bebebe bybyby";
+    string a;
+    getline(cin, a);
+    fin << a;
     fin.close();
     ifstream fout("bebebe.txt");
+    if (!fout.is_open()) {
+        cout << "Ненаход" << endl;
+        return;
+    }
+    
     string line;
-    getline(fout, line);
+    while (getline(fout, line)) {
+        cout << line << endl;
+    }
     cout << line << endl;
 }
 
@@ -61,7 +71,8 @@ void task3_3() {
         cerr << "Err" << endl;
         return;
     }
-    string text = "qWeRtYuIoPaSdFgHjKlZxCvBnMqAzXsDc";
+    string text;
+    getline(cin, text);
     fout << text;
     fout.close();
     ifstream fin("bebebe.txt");

@@ -32,7 +32,7 @@ void task3_1() {
 
 
 void task3_2() {
-    ofstream fout("bebebe.txt");
+   ofstream fout("bebebe.txt");
     if (!fout.is_open()) {
         cerr << "Err" << endl;
         return;
@@ -168,6 +168,8 @@ int main() {
         break;
     case 3:
         task3_3();
+    case 4:
+        task3_4();
         break;
     }
     return 0;

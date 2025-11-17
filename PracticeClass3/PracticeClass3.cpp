@@ -98,6 +98,60 @@ void task3_3() {
     cout << "Ответ: " << letters << endl;
 }
 
+void task3_4(){
+  ofstream fout("bebebe.txt");
+  if (!fout.is_open()) {
+      cerr << "Err" << endl;
+      return;
+  }
+  
+  string fnum, snum;
+
+  cout << "1 number = " << endl;
+  if (getline(cin, fnum)) {
+    fout << fnum << endl;
+  }
+  cout << "2 number = " << endl;
+  if (getline(cin, snum)) {
+    fout << snum << endl;
+  }
+  fout.close();
+
+  ifstream fin("bebebe.txt");
+  if (!fin.is_open()) {
+    cerr << "Err" << endl;
+    return;
+  }
+  
+  string file_fnum, file_snum;
+  getline(fin, file_fnum);
+  getline(fin, file_snum);
+
+  int a = stoi(file_fnum);
+  int b = stoi(file_snum);
+  while (a != 0 && b != 0) {
+      if (a > b) {
+          a = a % b;
+      } else {
+          b = b % a;
+      }
+  }
+    cout << "НОД путём деления = " << a + b << endl;
+
+  int M = stoi(file_fnum);
+  int N = stoi(file_snum);
+
+  while (M != N){
+    if (M > N) {
+      M = M - N;
+    }
+    else{
+      N = N - M;
+    }
+  }
+  cout << "НОД путём вычитания = " << M << endl;
+}
+
 int main() {
     setlocale(LC_ALL, "Russian");
     int x;

@@ -30,7 +30,6 @@ void task3_1() {
     cout << line << endl;
 }
 
-
 void task3_2() {
    ofstream fout("bebebe.txt");
     if (!fout.is_open()) {
@@ -49,7 +48,6 @@ void task3_2() {
     }
     char i;
     string num = "";
-    cout << "Ответ: ";
     while (fin.get(i)) {
         if (isdigit(i)) {
             num += i;
@@ -60,7 +58,7 @@ void task3_2() {
         }
     }
     if (!num.empty()) {
-        cout << num;
+        cout << "Ответ: " << num;
     }
     fin.close();
 }
@@ -107,11 +105,11 @@ void task3_4(){
   
   string fnum, snum;
 
-  cout << "1 number = " << endl;
+  cout << "1 number = ";
   if (getline(cin, fnum)) {
     fout << fnum << endl;
   }
-  cout << "2 number = " << endl;
+  cout << "2 number = ";
   if (getline(cin, snum)) {
     fout << snum << endl;
   }
@@ -152,6 +150,59 @@ void task3_4(){
   cout << "НОД путём вычитания = " << M << endl;
 }
 
+void task3_5(){
+    ofstream fout("bebebe.txt");
+  if (!fout.is_open()) {
+      cerr << "Err" << endl;
+      return;
+  }
+  cout << "Введите числа через пробел" << endl;
+  string nums;
+  getline(cin, nums);
+  fout << nums;
+  fout.close();
+
+}
+
+void task3_6(){
+  ofstream fout("bebebe.txt");
+  if (!fout.is_open()) {
+      cerr << "Err" << endl;
+      return;
+  }
+  cout << "Введите числа через пробел" << endl;
+  string nums;
+  getline(cin, nums);
+  fout << nums;
+  fout.close();
+
+  ifstream fin("bebebe.txt");
+  if (!fin.is_open()) {
+      cerr << "Err" << endl;
+      return;
+    }
+
+  char i;
+  double summa = 0;
+  string number = "";
+  while (fin.get(i)) {
+    if (isdigit(i)) {
+      number += i;
+    }
+    else if (!number.empty()) {
+      double nm = stod(number);
+      summa += nm;
+      number = "";
+    }
+  }
+  if (!number.empty()) {
+    double nm = stod(number);
+    summa += nm;
+  }
+
+  cout << "Сумма равна: " << summa << endl;
+}
+
 int main() {
     setlocale(LC_ALL, "Russian");
     int x;
@@ -170,6 +221,8 @@ int main() {
         task3_3();
     case 4:
         task3_4();
+    case 5:
+        task3_6();
         break;
     }
     return 0;

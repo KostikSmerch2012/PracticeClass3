@@ -3,6 +3,7 @@
 #include <cctype>
 #include <limits>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ void task3_1() {
     while (getline(fout, line)) {
         cout << line << endl;
     }
-    cout << line << endl;
+
 }
 
 void task3_2() {
@@ -63,27 +64,45 @@ void task3_2() {
     fin.close();
 }
 
+// void task3_3() {
+//     ofstream fout("bebebe.txt");
+//     if (!fout.is_open()) {
+//         cerr << "Err" << endl;
+//         return;
+//     }
+//     string text;
+//     getline(cin, text);
+//     fout << text;
+//     fout.close();
+//     ifstream fin("bebebe.txt");
+//     if (!fin.is_open()) {
+//         cerr << "Err" << endl;
+//         return;
+//     }
+//     char c;
+//     string letters = "";
+//     while (fin.get(c)) {
+//         letters += c;
+//     }
+//     fin.close();
+//     for (int i = 0; i < letters.length(); i++) {
+//         for (int j = 0; j < letters.length() - 1; j++) {
+//             if (tolower(letters[j]) > tolower(letters[j + 1])) {
+//                 char temp = letters[j];
+//                 letters[j] = letters[j + 1];
+//                 letters[j + 1] = temp;
+//             }
+//         }
+//     }
+//     cout << "Ответ: " << letters << endl;
+// }
+
 void task3_3() {
-    ofstream fout("bebebe.txt");
-    if (!fout.is_open()) {
-        cerr << "Err" << endl;
-        return;
-    }
     string text;
     getline(cin, text);
-    fout << text;
-    fout.close();
-    ifstream fin("bebebe.txt");
-    if (!fin.is_open()) {
-        cerr << "Err" << endl;
-        return;
-    }
-    char c;
-    string letters = "";
-    while (fin.get(c)) {
-        letters += c;
-    }
-    fin.close();
+    
+    string letters = text;
+    
     for (int i = 0; i < letters.length(); i++) {
         for (int j = 0; j < letters.length() - 1; j++) {
             if (tolower(letters[j]) > tolower(letters[j + 1])) {
@@ -93,6 +112,7 @@ void task3_3() {
             }
         }
     }
+    
     cout << "Ответ: " << letters << endl;
 }
 
@@ -150,18 +170,31 @@ void task3_4(){
   cout << "НОД путём вычитания = " << M << endl;
 }
 
-void task3_5(){
-    ofstream fout("bebebe.txt");
-  if (!fout.is_open()) {
-      cerr << "Err" << endl;
-      return;
-  }
-  cout << "Введите числа через пробел" << endl;
-  string nums;
-  getline(cin, nums);
-  fout << nums;
-  fout.close();
-
+void task3_5() {
+    
+    cout << "Введите число" << endl;
+    int n;
+    cin >> n;
+    cin.ignore();
+    if (n < 2) {
+    return;
+    }  
+    vector<bool> is_prime(n + 1, true);
+    is_prime[0] = is_prime[1] = false;
+    
+    for (int i = 2; i * i <= n; i++) {
+        if (is_prime[i]) {
+            for (int j = i * i; j <= n; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    
+    for (int i = 2; i <= n; i++) {
+        if (is_prime[i]) {
+            cout << i << " ";
+        }
+    }
 }
 
 void task3_6(){
@@ -219,9 +252,14 @@ int main() {
         break;
     case 3:
         task3_3();
+        break;
     case 4:
         task3_4();
+        break;
     case 5:
+        task3_5();
+        break;
+    case 6:
         task3_6();
         break;
     }

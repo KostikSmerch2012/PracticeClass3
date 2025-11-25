@@ -114,14 +114,18 @@ void task3_4(){
   cout << "НОД вычитанием равен " << M << endl;
   }
   else{
-    if (a == 0 || b == 0) {
-      cout << "НОД равен " << max(a, b) << endl;
+    if (a == 0 || b == 0 ) {
+      if (a == 0 && b == 0) {
+        cout << "Нод не определён" << endl;
+      }
+      else
+        cout << "НОД равен " << max(a, b) << endl;
     }
     else{
-      cout << "НОД не определён" << endl;
+    cout << "НОД равен " << max(a, b) << endl;
+    }
       return;
     }
-  }
 }
 
 void task3_5() {
@@ -151,44 +155,46 @@ void task3_5() {
     }
 }
 
-void task3_6(){
-  ofstream fout("bebebe.txt");
-  if (!fout.is_open()) {
-      cerr << "Err" << endl;
-      return;
-  }
-  cout << "Введите числа через пробел" << endl;
-  string nums;
-  getline(cin, nums);
-  fout << nums;
-  fout.close();
-
-  ifstream fin("bebebe.txt");
-  if (!fin.is_open()) {
-      cerr << "Err" << endl;
-      return;
-    }
-
-  char i;
-  double summa = 0;
-  string number = "";
-  while (fin.get(i)) {
-    if (isdigit(i)) {
-      number += i;
-    }
-    else if (!number.empty()) {
-      double nm = stod(number);
-      summa += nm;
-      number = "";
-    }
-  }
-  if (!number.empty()) {
-    double nm = stod(number);
-    summa += nm;
-  }
-
-  cout << "Сумма равна: " << summa << endl;
-}
+// void task3_6(){
+//   ofstream fout("bebebe.txt");
+//   if (!fout.is_open()) {
+//       cerr << "Err" << endl;
+//       return;
+//   }
+//   cout << "Введите числа через пробел" << endl;
+//   string nums;
+//   getline(cin, nums);
+//   fout << nums;
+//   fout.close();
+//
+//   ifstream fin("bebebe.txt");
+//   if (!fin.is_open()) {
+//       cerr << "Err" << endl;
+//       return;
+//     }
+//
+//   char i;
+//   int counter = 0;
+//   double summa = 0;
+//   string number = "";
+//   while (fin.get(i) && counter < 10) {
+//     if ((i >= "0" && i <= "9") || i == "." || i == "-") {
+//       number += i;
+//     }
+//     else if (!number.empty()) {
+//       double nm = stod(number);
+//       summa += nm;
+//       number = "";
+//       counter ++;
+//     }
+//   }
+//   if (!number.empty() && counter < 10) {
+//     double nm = stod(number);
+//     summa += nm;
+//   }
+//
+//   cout << "Сумма равна: " << summa << endl;
+// }
 
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -213,9 +219,9 @@ int main() {
     case 5:
         task3_5();
         break;
-    case 6:
-        task3_6();
-        break;
+    // case 6:
+    //     task3_6();
+    //     break;
     }
     return 0;
 }

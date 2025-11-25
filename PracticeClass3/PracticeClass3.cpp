@@ -182,21 +182,31 @@ void task3_6(){
       number += i;
     }
     else if (!number.empty()) {
+    try{
       double nm = stod(number);
       summa += nm;
       number = "";
       counter ++;
-    }
+    }catch(...){
+      cout << "Ошибка вводимых данных" << endl;
+      return;
+      }
   }
   if (!number.empty() && counter < 10) {
+  try{
     double nm = stod(number);
     summa += nm;
+  }catch(...){
+    cout << "Ошибка вводимых данных" << endl;
+    return;
+    }
   }
   if (counter == 9) {
     cout << "Сумма равна: " << summa << endl;
   }else
     cout << "Надо 10 символов" << endl;
     return;
+  }
 }
 
 int main() {

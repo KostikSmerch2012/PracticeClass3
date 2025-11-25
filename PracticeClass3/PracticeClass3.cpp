@@ -64,38 +64,7 @@ void task3_2() {
     fin.close();
 }
 
-// void task3_3() {
-//     ofstream fout("bebebe.txt");
-//     if (!fout.is_open()) {
-//         cerr << "Err" << endl;
-//         return;
-//     }
-//     string text;
-//     getline(cin, text);
-//     fout << text;
-//     fout.close();
-//     ifstream fin("bebebe.txt");
-//     if (!fin.is_open()) {
-//         cerr << "Err" << endl;
-//         return;
-//     }
-//     char c;
-//     string letters = "";
-//     while (fin.get(c)) {
-//         letters += c;
-//     }
-//     fin.close();
-//     for (int i = 0; i < letters.length(); i++) {
-//         for (int j = 0; j < letters.length() - 1; j++) {
-//             if (tolower(letters[j]) > tolower(letters[j + 1])) {
-//                 char temp = letters[j];
-//                 letters[j] = letters[j + 1];
-//                 letters[j + 1] = temp;
-//             }
-//         }
-//     }
-//     cout << "Ответ: " << letters << endl;
-// }
+
 
 void task3_3() {
     string text;
@@ -116,59 +85,7 @@ void task3_3() {
     cout << "Ответ: " << letters << endl;
 }
 
-// void task3_4(){
-//   ofstream fout("bebebe.txt");
-//   if (!fout.is_open()) {
-//       cerr << "Err" << endl;
-//       return;
-//   }
-//
-//   string fnum, snum;
-//
-//   cout << "1 number = ";
-//   if (getline(cin, fnum)) {
-//     fout << fnum << endl;
-//   }
-//   cout << "2 number = ";
-//   if (getline(cin, snum)) {
-//     fout << snum << endl;
-//   }
-//   fout.close();
-//
-//   ifstream fin("bebebe.txt");
-//   if (!fin.is_open()) {
-//     cerr << "Err" << endl;
-//     return;
-//   }
-//
-//   string file_fnum, file_snum;
-//   getline(fin, file_fnum);
-//   getline(fin, file_snum);
-//
-//   int a = stoi(file_fnum);
-//   int b = stoi(file_snum);
-//   while (a != 0 && b != 0) {
-//       if (a > b) {
-//           a = a % b;
-//       } else {
-//           b = b % a;
-//       }
-//   }
-//     cout << "НОД путём деления = " << a + b << endl;
-//
-//   int M = stoi(file_fnum);
-//   int N = stoi(file_snum);
-//
-//   while (M != N){
-//     if (M > N) {
-//       M = M - N;
-//     }
-//     else{
-//       N = N - M;
-//     }
-//   }
-//   cout << "НОД путём вычитания = " << M << endl;
-// }
+
 
 void task3_4(){
   cout << "Введите 2 числа" << endl;
@@ -177,7 +94,8 @@ void task3_4(){
   cin >> b;
   int M = a;
   int N = b;
-  while (a != 0 && b != 0){
+  if (a > 0 && b > 0) {
+    while (a != 0 && b != 0){
     if (a > b) {
       a = a % b;
     }else{
@@ -194,6 +112,16 @@ void task3_4(){
     }
   }
   cout << "НОД вычитанием равен " << M << endl;
+  }
+  else{
+    if (a == 0 || b == 0) {
+      cout << "НОД равен " << max(a, b) << endl;
+    }
+    else{
+      cout << "НОД не определён" << endl;
+      return;
+    }
+  }
 }
 
 void task3_5() {

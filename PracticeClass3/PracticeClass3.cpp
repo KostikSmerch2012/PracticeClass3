@@ -155,46 +155,49 @@ void task3_5() {
     }
 }
 
-// void task3_6(){
-//   ofstream fout("bebebe.txt");
-//   if (!fout.is_open()) {
-//       cerr << "Err" << endl;
-//       return;
-//   }
-//   cout << "Введите числа через пробел" << endl;
-//   string nums;
-//   getline(cin, nums);
-//   fout << nums;
-//   fout.close();
-//
-//   ifstream fin("bebebe.txt");
-//   if (!fin.is_open()) {
-//       cerr << "Err" << endl;
-//       return;
-//     }
-//
-//   char i;
-//   int counter = 0;
-//   double summa = 0;
-//   string number = "";
-//   while (fin.get(i) && counter < 10) {
-//     if ((i >= "0" && i <= "9") || i == "." || i == "-") {
-//       number += i;
-//     }
-//     else if (!number.empty()) {
-//       double nm = stod(number);
-//       summa += nm;
-//       number = "";
-//       counter ++;
-//     }
-//   }
-//   if (!number.empty() && counter < 10) {
-//     double nm = stod(number);
-//     summa += nm;
-//   }
-//
-//   cout << "Сумма равна: " << summa << endl;
-// }
+void task3_6(){
+  ofstream fout("bebebe.txt");
+  if (!fout.is_open()) {
+      cerr << "Err" << endl;
+      return;
+  }
+  cout << "Введите числа через пробел" << endl;
+  string nums;
+  getline(cin, nums);
+  fout << nums;
+  fout.close();
+
+  ifstream fin("bebebe.txt");
+  if (!fin.is_open()) {
+      cerr << "Err" << endl;
+      return;
+    }
+
+  char i;
+  int counter = 0;
+  double summa = 0;
+  string number = "";
+  while (fin.get(i) && counter < 10) {
+    if ((i >= '0' && i <= '9') || i == '.' || i == '-') {
+      number += i;
+    }
+    else if (!number.empty()) {
+      double nm = stod(number);
+      summa += nm;
+      number = "";
+      counter ++;
+    }
+  }
+  if (!number.empty() && counter < 10) {
+    double nm = stod(number);
+    summa += nm;
+  }
+  if (counter == 9) {
+    cout << "Сумма равна: " << summa << endl;
+  }else
+    cout << "Надо 10 символов" << endl;
+    return;
+}
 
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -219,9 +222,12 @@ int main() {
     case 5:
         task3_5();
         break;
-    // case 6:
-    //     task3_6();
-    //     break;
+    case 6:
+        task3_6();
+        break;
+    default:
+      cout << "Нету такой таски" << endl;
+      break;
     }
     return 0;
 }

@@ -137,8 +137,10 @@ void task3_5() {
     if (n < 2) {
     return;
     }  
-    vector<bool> is_prime(n + 1, true);
-    is_prime[0] = is_prime[1] = false;
+    bool* is_prime = new bool[n + 1];
+      for (int i = 0; i <= n; i++) {
+        is_prime[i] = true;
+    }
     
     for (int i = 2; i * i <= n; i++) {
         if (is_prime[i]) {
@@ -153,6 +155,7 @@ void task3_5() {
             cout << i << " ";
         }
     }
+  delete[] is_prime;
 }
 
 void task3_6(){

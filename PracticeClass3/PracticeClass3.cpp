@@ -129,34 +129,89 @@ void task3_4(){
 }
 
 void task3_5() {
-    
-    cout << "Введите число" << endl;
-    int n;
-    cin >> n;
-    cin.ignore();
-    if (n < 2) {
-    return;
-    }  
-    bool* is_prime = new bool[n + 1];
-      for (int i = 0; i <= n; i++) {
-        is_prime[i] = true;
-    }
-    
-    for (int i = 2; i * i <= n; i++) {
-        if (is_prime[i]) {
-            for (int j = i * i; j <= n; j += i) {
-                is_prime[j] = false;
-            }
-        }
-    }
-    
-    for (int i = 2; i <= n; i++) {
-        if (is_prime[i]) {
-            cout << i << " ";
-        }
-    }
+  cout << "Введите число" << endl;
+  int n;
+  cin >> n;
+  cin.ignore();
+  if (n < 2) {
+  return;
+  }  
+  bool* is_prime = new bool[n + 1];
+    for (int i = 0; i <= n; i++) {
+      is_prime[i] = true;
+  }
+  
+  for (int i = 2; i * i <= n; i++) {
+      if (is_prime[i]) {
+          for (int j = i * i; j <= n; j += i) {
+              is_prime[j] = false;
+          }
+      }
+  }
+  
+  for (int i = 2; i <= n; i++) {
+      if (is_prime[i]) {
+          cout << i << " ";
+      }
+  }
   delete[] is_prime;
 }
+
+// void task3_6(){
+//   ofstream fout("bebebe.txt");
+//   if (!fout.is_open()) {
+//       cerr << "Err" << endl;
+//       return;
+//   }
+//   cout << "Введите числа через пробел" << endl;
+//   string nums;
+//   getline(cin, nums);
+//   fout << nums;
+//   fout.close();
+//
+//   ifstream fin("bebebe.txt");
+//   if (!fin.is_open()) {
+//       cerr << "Err" << endl;
+//       return;
+//     }
+//
+//   char i;
+//   int counter = 0;
+//   double summa = 0;
+//   string number = "";
+//   while (fin.get(i) && counter < 10) {
+//     if ((i >= '0' && i <= '9') || i == '.' || i == '-') {
+//       number += i;
+//     }
+//     else if (!number.empty()) {
+//     try{
+//       double nm = stod(number);
+//       summa += nm;
+//       number = "";
+//       counter ++;
+//     }catch(...){
+//       cout << "Ошибка вводимых данных" << endl;
+//       return;
+//       }
+//   }
+//   if (!number.empty() && counter < 10) {
+//   try{
+//     double nm = stod(number);
+//     summa += nm;
+//   }catch(...){
+//     cout << "Ошибка вводимых данных" << endl;
+//     return;
+//     }
+//   }
+// }
+//
+//   if (counter == 9) {
+//     cout << "Сумма равна: " << summa << endl;
+//   }else{
+//     cout << "Надо 10 символов" << endl;
+//     return;
+//   }
+// }
 
 void task3_6(){
   ofstream fout("bebebe.txt");
@@ -180,35 +235,43 @@ void task3_6(){
   int counter = 0;
   double summa = 0;
   string number = "";
-  while (fin.get(i) && counter < 10) {
+  
+  while (fin.get(i)) {
     if ((i >= '0' && i <= '9') || i == '.' || i == '-') {
       number += i;
     }
     else if (!number.empty()) {
+      try{
+        double nm = stod(number);
+        summa += nm;
+        number = "";
+        counter++;
+        
+        if (counter == 10) {
+          break;
+        }
+      }catch(...){
+        cout << "Ошибка вводимых данных" << endl;
+        return;
+      }
+    }
+  }
+  
+  if (!number.empty() && counter < 10) {
     try{
       double nm = stod(number);
       summa += nm;
-      number = "";
-      counter ++;
+      counter++;
     }catch(...){
       cout << "Ошибка вводимых данных" << endl;
       return;
-      }
-  }
-  if (!number.empty() && counter < 10) {
-  try{
-    double nm = stod(number);
-    summa += nm;
-  }catch(...){
-    cout << "Ошибка вводимых данных" << endl;
-    return;
     }
   }
-  if (counter == 9) {
+  
+  if (counter == 10) {
     cout << "Сумма равна: " << summa << endl;
-  }else
-    cout << "Надо 10 символов" << endl;
-    return;
+  } else {
+    cout << "Надо 10 чисел. Введено: " << counter << endl;
   }
 }
 
